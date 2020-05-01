@@ -3,3 +3,5 @@ A Go program that displays security advisories for a given dependencies file lev
 
 # Usage
 > goss --dependencies "requirements.txt"
+
+![alert](docs/gopher-alert.jpg)
