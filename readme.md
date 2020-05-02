@@ -14,7 +14,7 @@ Through his cunning, Loki helped the Aesir (Northern Gods) in difficult situatio
 > loki --dependencies "requirements.txt" --language "python"
 
 #####################################################
-# Welcome to Go Open Source Security Scanner - GOS3 #
+# Welcome to the LOKI Open Source Scanner           #
 #####################################################
 
 Scan information:
