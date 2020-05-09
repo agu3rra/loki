@@ -11,11 +11,12 @@ var lokiVersion = "0.0.1"
 // Language support: what's available on GitHub's Advisory DB as Ecosystems
 var (
 	supportedLanguages = map[string]string{
-		"PIP":      "Python",
-		"NPM":      "JavaScript",
-		"NuGet":    "DOTNET",
-		"Maven":    "Java",
-		"Composer": "PHP",
+		// Language : PackageEcosystem
+		"python":     "pip",
+		"javascript": "npm",
+		"dotnet":     "nuget",
+		"java":       "maven",
+		"php":        "composer",
 	}
 )
 
@@ -42,7 +43,7 @@ func help() {
 
 	h += "Options:\n"
 	h += "  -l, --language	Language to be scanned. Available: "
-	for _, lang := range supportedLanguages {
+	for lang, _ := range supportedLanguages {
 		h += lang + ";"
 	}
 	h += "\n"

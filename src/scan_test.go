@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"testing"
 )
 
@@ -22,9 +23,11 @@ func TestLoki(t *testing.T) {
 	for _, testCase := range cases {
 		code, err := StartScan(testCase.dependencies, testCase.language)
 		if testCase.expectedExitCode != code {
+			fmt.Println("Error on test case: ", testCase)
 			t.Error("Unexpected exit code")
 		}
 		if testCase.expectedError != err {
+			fmt.Println("Error on test case: ", testCase)
 			t.Error("Unexpected error")
 		}
 	}
