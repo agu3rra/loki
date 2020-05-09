@@ -1,5 +1,5 @@
-# Loki Open Source Scanner
-A Go program that displays security advisories for a given dependencies file leveraging [GitHub's Security Advisory API](https://developer.github.com/v4/object/securityadvisory/).  
+# Loki Open Source Scanner (work in progress...)
+A Python program that displays security advisories for a given dependencies file leveraging [GitHub's Security Advisory API](https://developer.github.com/v4/object/securityadvisory/).  
 For ad-hod advisory look-ups: https://github.com/advisories
 
 # About the name
