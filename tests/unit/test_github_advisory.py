@@ -1,7 +1,9 @@
 import pytest
 import requests
 
-from .github_advisory import GitHubAdvisory
+import loki
+from loki.scanners.integrators import GitHubAdvisory
+from loki import GITHUB_PAT
 
 
 class TestGitHubAdvisoryAPI():

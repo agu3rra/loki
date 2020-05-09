@@ -3,7 +3,7 @@ import os
 import enum
 
 import scanners
-from environment import GITHUB_PAT
+from .environment import GITHUB_PAT
 
 # Program exit codes
 class ExitCode(enum.Enum):
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         os._exit(ExitCode.LANGUAGE_NOT_SUPPORTED)
 
     if args.language == "python":
-        scanner = scanners.Pip(dependencies, GITHUB_PAT)
+        scanner = scanners.Pip(args.dependencies, GITHUB_PAT)
         if scanner is None:
             os._exit(ExitCode.ERROR_OPENING_DEPENDENCIES)
         _ = scanner.get_advisories()

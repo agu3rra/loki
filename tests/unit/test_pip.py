@@ -1,5 +1,8 @@
 import pytest
-from .pip import Pip
+
+import loki
+from loki.scanners import Pip
+from loki import GITHUB_PAT
 
 
 class TestPipScan():
@@ -12,7 +15,7 @@ class TestPipScan():
         ("sample_pip_malformed", None),
     ])
     def test_scan(self, dependencies, expected):
-        scanner = Pip(dependencies)
+        scanner = Pip(dependencies, GITHUB_PAT)
         advisories = scanner.get_advisories()
         if advisories is None:
             assert isinstance(type(advisories), expected)

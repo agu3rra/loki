@@ -14,6 +14,9 @@ class Pip():
                                 This class can parse regular requirements.txt
                                 and Pipfiles.
         """
+        if dependencies is None or github_pat is None:
+            return None
+        
         dependencies = read_file(dependencies)
         if dependencies is None:
             return None
@@ -28,5 +31,5 @@ class Pip():
         Returns:
             (dict) packages and related advisories
         """
-        api = GitHubAdvisory(self.github_pat)
+        api = GitHubAdvisory(pat=self.github_pat)
         return None
