@@ -3,6 +3,7 @@ import os
 import enum
 
 import scanners
+from environment import GITHUB_PAT
 
 # Program exit codes
 class ExitCode(enum.Enum):
@@ -15,7 +16,6 @@ class ExitCode(enum.Enum):
 languages = {
     #language:ecosystem
     "python":"pip",
-    "javascript":"npm",
 }
 
 if __name__ == "__main__":
@@ -37,15 +37,8 @@ if __name__ == "__main__":
         print("Language not supported.")
         os._exit(ExitCode.LANGUAGE_NOT_SUPPORTED)
 
-    # Check dependencies file
-    try:
-        with open(args.dependencies, 'r') as df:
-            dependencies = df.readlines()
-    except Exception as e:
-        print("Error while accessing dependencies file")
-        print(str(e))
-        os._exit(ExitCode.ERROR_OPENING_DEPENDENCIES)
-
     if args.language == "python":
-        scanner = scanners.Pip(dependencies)
+        scanner = scanners.Pip(dependencies, GITHUB_PAT)
+        if scanner is None:
+            os._exit(ExitCode.ERROR_OPENING_DEPENDENCIES)
         _ = scanner.get_advisories()
