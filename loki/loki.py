@@ -2,8 +2,7 @@ import argparse
 import os
 import enum
 
-from . import scanners
-
+import scanners
 
 # Program exit codes
 class ExitCode(enum.Enum):
@@ -49,4 +48,4 @@ if __name__ == "__main__":
 
     if args.language == "python":
         scanner = scanners.Pip(dependencies)
-        avisories = scanner.get_advisories()
+        _ = scanner.get_advisories()

@@ -1,1 +1,1 @@
-from . import Pip
+from .pip import Pip
