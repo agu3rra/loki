@@ -1,3 +1,3 @@
 flask==0.2.5
-django==0.9.0
+django==1.11.28
 requests==2.19.1
