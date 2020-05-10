@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -19,19 +20,27 @@ func StartScan(dependencies string, language string) (int, error) {
 	file, err := os.Open(dependencies)
 	if err != nil {
 		fmt.Println(err)
-		os.Exit(exitFileNotFound)
+		return exitFileError, errors.New("Unable to open dependencies file")
 	}
+	defer file.Close()
 
 	// Verify language availability
 	language = strings.ToLower(language)
 	ecosystem := supportedLanguages[language]
 	if ecosystem == "" {
-		fmt.Println("Language not available")
-		os.Exit(exitLanguage)
+		msg := "Language not available"
+		fmt.Println(msg)
+		return exitLanguage, errors.New(msg)
 	}
 
 	// Parse dependencies file
-	fmt.Println(file)
+	data, err := ioutil.ReadFile(dependencies)
+	if err != nil {
+		msg := "Error while reading dependencies"
+		fmt.Println(msg)
+		return exitFileError, errors.New(msg)
+	}
+	fmt.Println(string(data))
 
 	return exitOK, nil
 }

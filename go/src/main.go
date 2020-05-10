@@ -24,7 +24,7 @@ var (
 const (
 	exitOK = iota
 	exitMissingArguments
-	exitFileNotFound
+	exitFileError
 	exitLanguage
 )
 
@@ -56,7 +56,7 @@ func help() {
 	h += "Exit codes:\n"
 	h += fmt.Sprintf("  %d\t%s\n", exitOK, "OK")
 	h += fmt.Sprintf("  %d\t%s\n", exitMissingArguments, "Missing arguments")
-	h += fmt.Sprintf("  %d\t%s\n", exitFileNotFound, "File not found")
+	h += fmt.Sprintf("  %d\t%s\n", exitFileError, "File not found")
 	h += fmt.Sprintf("  %d\t%s\n", exitLanguage, "Language not available")
 
 	fmt.Fprintf(os.Stderr, h)
@@ -88,5 +88,10 @@ func main() {
 	fmt.Println("Language:", languageFlag)
 	fmt.Println("To supress and justify (optionally) findings, simply provide a gos3ignore.yml file.")
 
-	StartScan(dependenciesFlag, languageFlag)
+	// Call scan routine
+	code, err := StartScan(dependenciesFlag, languageFlag)
+	if err != nil {
+		fmt.Println(err)
+	}
+	os.Exit(code)
 }
