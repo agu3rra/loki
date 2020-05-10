@@ -17,9 +17,11 @@ class Pip():
         if dependencies is None or github_pat is None:
             return None
         
+        # Turn dependencies path into a big string of actual dependencies
         dependencies = read_file(dependencies)
         if dependencies is None:
             return None
+        
         self.dependencies = dependencies
         self.github_pat = github_pat
 
@@ -32,4 +34,4 @@ class Pip():
             (dict) packages and related advisories
         """
         api = GitHubAdvisory(pat=self.github_pat)
-        return None
+        return api.post(None)

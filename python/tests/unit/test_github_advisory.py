@@ -34,6 +34,7 @@ class TestGitHubAdvisoryAPI():
     def test_post(self, query):
         api = GitHubAdvisory(GITHUB_PAT)
         response = api.post(query)
+        assert response is not None
         data = response.get("data", None)
         assert data is not None
         vulnerabilities = data.get("securityVulnerabilities", None)

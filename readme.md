@@ -1,11 +1,11 @@
 # Loki Open Source Scanner (work in progress...)
-A Python program that displays security advisories for a given dependencies file leveraging [GitHub's Security Advisory API](https://developer.github.com/v4/object/securityadvisory/).  
+This program that displays security advisories for a given dependencies file leveraging [GitHub's Security Advisory API](https://developer.github.com/v4/object/securityadvisory/).  
 For ad-hod advisory look-ups: https://github.com/advisories
 
 # About the name
-In Norse mythology Loki is the son of giants and a trickster/shapeshifter. Likewise, open-source is ever-evolving. What is considered safe today will not remain so indefinetly. This is why automatically receiving advisories on new vulnerabilities that affect your software projets is key to ensure your customers don't fall victim to exploitation.
+Through his cunning, Loki helped the Aesir (Northern Gods) in difficult situations. In Norse mythology Loki is the son of giants and a trickster/shapeshifter. Likewise, open-source is ever-evolving. What is considered safe today will not remain so indefinetly. This is why automatically receiving advisories on new vulnerabilities that affect your software projets is key to ensure your customers don't fall victim to exploitation.
 
-Through his cunning, Loki helped the Aesir (Northern Gods) in difficult situations. So will **LOKI** help you, the Developers!
+*The goal of this project is to provide you with continuous feedback on the health status of your open-source libraries, no matter which GIT repository (GitHub, Gitlab, BitBucket, Azure Repos, etc) or integration pipelines you are using.*
 
 ![loki](docs/loki.jpg)
 
