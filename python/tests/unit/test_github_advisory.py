@@ -3,42 +3,44 @@ import requests
 
 import loki
 from loki.scanners.integrators import GitHubAdvisory
-from loki import GITHUB_PAT
+from loki.environment import GITHUB_PAT
 
 
 class TestGitHubAdvisoryAPI():
 
-    @pytest.mark.parametrize("query", [
-        ({"query":
-        """
-        securityVulnerabilities (package:"flask", ecosystem: PIP, last:100) {
-            nodes {
-            package {
-                name
-                ecosystem
+    @pytest.mark.parametrize("query, exp_error", [
+        (
+            """
+            query retrieveVulnerability { 
+                securityVulnerabilities (package:"flask", ecosystem: PIP, last:100) {
+                    nodes {
+                        package {
+                            name
+                            ecosystem
+                        }
+                        vulnerableVersionRange
+                        advisory {
+                            summary
+                            severity
+                            ghsaId
+                            description
+                            permalink
+                            publishedAt
+                            updatedAt
+                        }
+                    }
+                }
             }
-            vulnerableVersionRange
-            advisory {
-                summary
-                severity
-                ghsaId
-                description
-                permalink
-                publishedAt
-                updatedAt
-            }
-            }
-        }
-        """}),
+            """,
+            None
+        ),
     ])
-    def test_post(self, query):
+    def test_post(self, query, exp_error):
         api = GitHubAdvisory(GITHUB_PAT)
-        response = api.post(query)
-        assert response is not None
-        data = response.get("data", None)
-        assert data is not None
-        vulnerabilities = data.get("securityVulnerabilities", None)
-        assert vulnerabilities is not None
-        nodes = vulnerabilities.get("nodes", None)
-        assert nodes is not None
-        assert len(nodes) > 0
+        (data, error) = api.run(query)
+        assert error == exp_error
+        if exp_error is not None:
+            assert isinstance(data, dict)
+            vulnerabilities = data.get("securityVulnerabilities").get("nodes")
+            assert isinstance(vulnerabilities, list)
+            assert len(vulnerabilities) > 0

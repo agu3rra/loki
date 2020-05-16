@@ -26,6 +26,7 @@ const (
 	exitMissingArguments
 	exitFileError
 	exitLanguage
+	exitMissingApiKey
 )
 
 // Startup routine

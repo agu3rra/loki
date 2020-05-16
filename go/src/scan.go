@@ -40,6 +40,8 @@ func StartScan(dependencies string, language string) (int, error) {
 		fmt.Println(msg)
 		return exitFileError, errors.New(msg)
 	}
+	dependencies := string(data)
+	strings.Split(dependencies, "\n")
 	fmt.Println(string(data))
 
 	return exitOK, nil
