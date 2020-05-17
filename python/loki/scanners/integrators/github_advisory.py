@@ -3,7 +3,7 @@ from gql import gql, Client
 from gql.transport.requests import RequestsHTTPTransport
 
 
-class GitHubAdvisory():
+class GitHubAdvisory:
     """
     Interacts with GitHub's advisory DB API
     """
@@ -41,7 +41,7 @@ class GitHubAdvisory():
             results = self.client.execute(gql(query))
             errors = results.get("errors", None)
             if errors is not None:
-                return (None, errors)
-            return (results, None)
+                return None, errors
+            return results, None
         except Exception as e:
-            return (None, str(e))
+            return None, str(e)

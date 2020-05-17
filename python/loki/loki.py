@@ -2,20 +2,22 @@ import argparse
 import os
 import enum
 
-import scanners
+from . import scanners
 from .environment import GITHUB_PAT
 
 # Program exit codes
-class ExitCode(enum.Enum):
-    OK=0
-    MISSING_ARGUMENTS=1
-    LANGUAGE_NOT_SUPPORTED=2
-    ERROR_OPENING_DEPENDENCIES=3
 
-# Language support
+
+class ExitCode(enum.Enum):
+    OK = 0
+    MISSING_ARGUMENTS = 1
+    LANGUAGE_NOT_SUPPORTED = 2
+    ERROR_OPENING_DEPENDENCIES = 3
+
+
 languages = {
-    #language:ecosystem
-    "python":"pip",
+    # language:ecosystem
+    "python": "pip",
 }
 
 if __name__ == "__main__":

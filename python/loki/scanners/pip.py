@@ -2,7 +2,7 @@ from .utils import read_file
 from .integrators import GitHubAdvisory
 
 
-class Pip():
+class Pip:
     """
     Scanner class for Python packages in the PyPi.org ecosystem
     """
