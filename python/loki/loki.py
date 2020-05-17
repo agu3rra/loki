@@ -1,5 +1,5 @@
 import argparse
-import os
+import sys
 import enum
 
 from . import scanners
@@ -37,10 +37,10 @@ if __name__ == "__main__":
     args.language = args.language.lower()
     if args.language not in languages.keys():
         print("Language not supported.")
-        os._exit(ExitCode.LANGUAGE_NOT_SUPPORTED)
+        sys.exit(ExitCode.LANGUAGE_NOT_SUPPORTED)
 
     if args.language == "python":
         scanner = scanners.Pip(args.dependencies, GITHUB_PAT)
         if scanner is None:
-            os._exit(ExitCode.ERROR_OPENING_DEPENDENCIES)
+            sys.exit(ExitCode.ERROR_OPENING_DEPENDENCIES)
         _ = scanner.get_advisories()
